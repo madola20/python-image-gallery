@@ -1,0 +1,28 @@
+<!DOCTYPE! html>
+<html lang="en">
+  <head>
+    <title>Module 3</title>
+    <meta charset="utf-8"> <meta name="viewport" content="width=`, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+	<nav id="main">
+	  <ul> <li><a href="/admin">Main</a></li>
+	    <li><a href="/admin/create_user">Create User</a></li>
+	  </ul>
+	</nav>
+      </header>
+      <div class="content">
+	<div> <h2>Are you sure you want to delete {{name}}?</h2>
+	  <br><br>
+
+	</div>
+	<!-- -->
+	<h4>Yeah</h4>
+      </div>
+    </div>
+    <br><br>
+  </body>
+  </html>
