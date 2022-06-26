@@ -9,18 +9,26 @@
     <div class="container">
       <header>
 	<nav id="main">
-	  <ul> <li><a href="/admin">Main</a></li>
-	    <li><a href="/admin/create_user">Create User</a></li>
+	  <ul><li><a href="/">Home</a></li>
+	    <li><a href="/gallery">Gallery</a></li>
+	    <li><a href="/upload">Upload</a></li>
 	  </ul>
 	</nav>
       </header>
       <div class="content">
-	<div> <h2>Are you sure you want to delete {{name}}?</h2>
+	<div> <h2>Upload New</h2>
 	  <br><br>
+	  <ul>
 
+
+	    <h3>Upload Image</h3>
+	    <form action='/upload' id='imageForm'  method='POST' enctype='multipart/form-data'>
+	      <input  type='file' accept='image/*' name='file' value='file' required>
+	      <input type='submit' value='Upload'>
+	    </form>
+	  </ul>
 	</div>
 	<!-- -->
-	<h4>Yeah</h4>
       </div>
     </div>
     <br><br>

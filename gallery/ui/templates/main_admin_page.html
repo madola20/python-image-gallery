@@ -9,8 +9,10 @@
     <div class="container">
       <header>
 	<nav id="main">
-	  <ul> <li><a href="/admin">Main</a></li>
+	  <ul> <li><a href="/admin/users">Admin</a></li>
 	    <li><a href="/admin/create_user">Create User</a></li>
+	    <li><a href="/gallery">Gallery</a></li>
+	    <li><a href="/upload">Upload</a></li>
 	  </ul>
 	</nav>
       </header>
@@ -18,9 +20,11 @@
 	<div> <h2>Maintenance Users</h2>
 	  <br><br>
 	  <ul>
+
 	    {% for user in users%}
-	    <li><a href="/admin/modify_user">{{ user[0] }}</a>  ||  {{user[1]}} <a href="/admin/delete_user"><strong>delete</strong></href> </li>
+	    <li><a href="/admin/modify_user">{{ user[0] }}</a>  ||  {{ user[1] }} <a href="/admin/delete_user"><strong>delete</strong></href> </li>
 {% endfor %}
+
 </ul>
 </div>
 <!-- -->
