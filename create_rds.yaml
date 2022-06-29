@@ -1,0 +1,35 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    ami_id: "ami-0cff7528ff583bf9a"
+    name_of_ssh_key: ""
+    public_subnet_id: ""
+  module_defaults:
+    group/aws:
+      region: "us-east-1"
+  tasks:
+    - name: Create RDS group
+      rds_subnet_group:
+        state: present
+        name: psql_group
+        description: postgres subnet group
+        subnets:
+          - "{{ m5_private_subnet.subnet.id }}"
+          - "{{ m5_public_subnet_2.subnet.id }}"
+      register: psql_group
+    - name: create rds instance
+      rds_instance:
+        db_name: mod5
+        state: present
+        db_instance_identifier: mod5-instance
+        engine: postgres
+        port: 5432
+        db_instance_class: db.t3.micro
+        allocated_storage: 20
+        master_username: postgres
+        master_user_password: Thisisyourtempphrase!1
+        subnet_group: "{{ psql_group.subnet_group.db_subnet_group_name }}"
+        tags:
+          Module: 5
+      register: mod5Db
