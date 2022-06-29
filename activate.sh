@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-if ["$#" !="1"]; then
+if [ "$#" != "1" ]; then
     echo "Usage: activate <version-number>"
     exit 1
 
