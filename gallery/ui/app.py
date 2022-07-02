@@ -12,9 +12,9 @@ import sys
 
 from functools import wraps
 
-from ..data.user import User
+from ..data.user import *
 from ..data.postgres_user_dao import PostgresUserDAO
-from ..data.db import *
+from ..data.db import User
 
 from ..tools.s3 import *
 sys.path.append('/home/ec2-user')
