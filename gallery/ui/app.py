@@ -12,9 +12,9 @@ import sys
 
 from functools import wraps
 
-from ..data.user import *
+from ..data.user import User
 from ..data.postgres_user_dao import PostgresUserDAO
-from ..data.db import User
+from ..data.db import *
 
 from ..tools.s3 import *
 sys.path.append('/home/ec2-user')
@@ -22,7 +22,11 @@ sys.path.append('/home/ec2-user')
 
 app = Flask(__name__)
 app.secret_key = b'safsf987s9f7w9#$*bygh$@'
-s3 = boto3.resource('s3')
+
+ACCESS_ID='THIS-WAS-HARDCODED_NOW-INCORRECT'
+ACCESS_KEY='THIS-WAS-HARDCODED_NOW-INCORRECT'
+
+s3 = boto3.resource('s3', aws_access_key_id=ACCESS_ID, aws_secret_access_key=ACCESS_KEY)
 
 
 connect()
@@ -45,6 +49,10 @@ def login():
     else:
         return render_template('login.html')
 
+@app.route('/')
+def welcome_screen():
+    return render_template('user_home.html')
+  
 @app.route('/gallery', methods=['GET', 'POST'])
 def display_gallery():
     if request.method == 'POST':
@@ -58,7 +66,7 @@ def display_gallery():
         user_bucket = s3.Bucket("python-image-gallery-bucket")
         for file in user_bucket.objects.all():
             images.append(file.key)
-            return render_template('gallery.html', images=images)
+        return render_template('gallery.html', images=images)
 
 @app.route('/upload', methods=['GET','POST'])
 def upload_image():
@@ -101,7 +109,7 @@ def requires_admin(view):
 @requires_admin
 def list_users():
     res = execute('select username, password from users')
-    #return render_template('user.html', users=get_user_dao().get_users())
+   # return render_template('user.html', users=get_user_dao().get_users())
     results = fetch_results()
     
     user_info = []
@@ -109,7 +117,7 @@ def list_users():
         a,b = row
         user_info.append((a,b))
         
-        return render_template('main_admin_page.html', users=user_info)
+    return render_template('main_admin_page.html', users=user_info)
 
 @app.route('/admin/delete_user')
 @requires_admin
