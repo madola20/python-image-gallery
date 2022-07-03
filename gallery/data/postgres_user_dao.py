@@ -9,15 +9,16 @@ class PostgresUserDAO(UserDAO):
     def get_users(self):
         result = []
         cursor = db.execute("select username,password,full_name from users")
-        for t in cursor.fetchall():
-            result.append(User(t[0], t[1], t[2]))
-            return result
+        get_results = cursor.fetchall()
+        for t in get_results:
+            result.append(User(t[0], t[2]))
+        return result
         
-        def get_user_by_username(self, username):
-            
-            cursor = db.execute("select username,password,full_name from users where username=%s", (username,))
-            row = cursor.fetchone()
-            if row is None:
-                return None
-            else:
-                return User(row[0], row[1], row[2])
+    def get_user_by_username(self, username):
+        
+        cursor = db.execute("select username,password,full_name from users where username=%s", (username,))
+        row = cursor.fetchone()
+        if row is None:
+            return None
+        else:
+            return User(row[0], row[1], row[2])
