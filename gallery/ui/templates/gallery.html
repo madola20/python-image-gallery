@@ -1,0 +1,43 @@
+<!DOCTYPE! html>
+<html lang="en">
+  <head>
+    <title>Module 3</title>
+    <meta charset="utf-8"> <meta name="viewport" content="width=`, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css')}}">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+	<nav id="main">
+	  <ul><li><a href="/">Home</a></li>
+	    <li><a href="/admin/users">Admin</a></li>
+	    <li><a href="/gallery">Gallery</a></li>
+	    <li><a href="/upload">Upload</a></li>
+	  </ul>
+	</nav>
+      </header>
+      <div class="content">
+	<div> <h2>Gallery</h2>
+	  <br><br>
+	  {% if images %}
+	  {% for image in images %}
+
+	  <div>
+	    <a href='https://python-image-gallery-bucket.s3.amazonaws.com/{{image}}' ><img width="300" src="https://python-image-gallery-bucket.s3.amazonaws.com/{{image}}"></a>
+	    <form action='/gallery' method='POST'>
+	      <input type='hidden'  name='object' value='{{image}}'>
+	      <input type='submit'  value='Delete'>
+	    </form>
+	    <br><br>
+	  </div>
+
+	  {% endfor %}
+	  {% endif %}
+
+	</div>
+	<!-- -->
+      </div>
+    </div>
+    <br><br>
+  </body>
+  
