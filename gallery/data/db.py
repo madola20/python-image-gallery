@@ -9,12 +9,12 @@ db_name = "image_gallery"
 db_username = "image_gallery"
 password_file = "temp_pw_file.txt"
 connection = psycopg2.connect(host=db_hostname, dbname=db_name, user=db_username,
-                                                                         password="Welcometoyouraccount!behave")
+                                                                         password="HARDCODED-NOW-INCORRECT")
 cursor = None
 
 
 def connect():
-    connection = psycopg2.connect(host=db_hostname, dbname=db_name, user=db_username,password="Welcometoyouraccount!behave")
+    connection = psycopg2.connect(host=db_hostname, dbname=db_name, user=db_username,password="HARDCODED-NOW-INCORRECT")
     
     
 def execute(query, args=None):
